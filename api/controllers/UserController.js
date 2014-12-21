@@ -6,7 +6,34 @@
  */
 
 module.exports = {
-	 'new' : function(req, res) {
+	'new' : function(req, res) {
+		  res.locals.flash  = _.clone(req.session.flash);
 		  res.view();
+			req.session.flash = {}
+	} ,
+	'create' : function( req, res, next ) {
+		  console.log(req.params.all());
+			User.create(req.params.all(), function userCreated(err, user) {
+
+				if (err) {
+					console.log(err);
+
+					req.session.flash = {
+						err: err
+					}
+					return res.redirect('/user/new');
+				}
+				res.json(user);
+				req.session.flash = {};
+			});
+	},
+	'edit' : function (req, res, next) {
+
+	} ,
+	'update' : function(req, res, next) {
+
+	},
+	'destroy' : function( req, res) {
+
 	}
 };

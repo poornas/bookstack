@@ -6,6 +6,7 @@
 */
 
 module.exports = {
+  schema : true,  //to prevent saving non attributes to d/b
 
   attributes: {
     firstname: {
@@ -21,6 +22,22 @@ module.exports = {
       email: true,
       required: true,
       unique: true
+    },
+    encryptedPassword : {
+      type: 'string'
+    },
+    // to prevent client from seeing attributes that should be hidden
+    toJSON: function() {
+      var obj = this.toObject();
+      delete obj.password;
+      delete obj.confirmation;
+      delete obj.encrypedPassword;
+      delete obj._csrf;
+      // is there another way to get rid of this globally?
+      delete obj.id;
+      delete obj.createdAt;
+      delete obj.updatedAt;
+      return obj;
     }
   }
 };
