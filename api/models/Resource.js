@@ -8,10 +8,21 @@
 module.exports = {
 
   attributes: {
-    name: String,
-    price: Number,
-    description: String,
-    url: String,
-    image: String
+    name: {
+      type: 'string',
+      required: true
+    },
+    price: {
+      type: 'number'
+    },
+    description: {
+      type: 'string'
+    },
+    url: {
+      type: 'string'
+    },
+    image: {
+      type: 'string'
+    }
   }
 };
