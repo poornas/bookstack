@@ -1,9 +1,7 @@
 $(document).ready(function() {
   $('.form-signin').validate({
       rules: {
-         firstname: {
-           required: true
-         },
+        
          lastname: {
            required: true
          },
