@@ -1,7 +1,7 @@
 $(document).ready(function() {
-  $('.form-signin').validate({
+  $('#signup-form').validate({
       rules: {
-        
+
          lastname: {
            required: true
          },
