@@ -10,6 +10,7 @@ module.exports = {
 		  res.view();
 	} ,
 	'create' : function( req, res, next ) {
+		 console.log("params====== " + req.params.all());
 			User.create(req.params.all(), function userCreated(err, user) {
 				if (err) {
 					console.log(err);
