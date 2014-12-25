@@ -12,7 +12,19 @@ module.exports = {
 		res.view('session/new');
 	},
 	'destroy' : function(req,res,next) {
-
+		User.findOne(req.session.User.id, function foundUser(err, user) {
+			var userId = req.session.User.id;
+			if (user) {
+				User.update(userId,{
+					online: false
+				}, function(err) {
+					if (err) return next(err);
+				}
+				);
+			}
+			req.session.destroy();
+			res.redirect('/session/new');
+		});
 	},
 	'create': function(req, res, next) {
 		if (!req.param('email') || !req.param('password')) {
@@ -44,9 +56,19 @@ module.exports = {
 					return;
 				}
 				//log user in
+				user.online = true;
+				user.save(function(err, user){
+					if (err) return next(err);
+				});
+				console.log('session/create logging user in....' + user.id);
 				req.session.authenticated = true;
-				req.session.User = user;
+				req.session.User = _.clone(user);
+				console.log('session/create logging user in....' + req.session.User.id);
 
+				if (req.session.User.admin) {
+					res.redirect('/user');
+					return;
+				}
 				res.redirect('/user/show/' + user.id);
 			});
 		});

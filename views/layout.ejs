@@ -50,9 +50,11 @@
         <ul class="nav navbar-nav">
           <% if (session.authenticated) { %>
             <li class="active"><a href="/user/show/<%= session.User.id %>" ><%= session.User.email %> </a> </li>
-            <li><a href="/user">User Administration</a></li>
-            <li><a href="#">Placeholder2</a></li>
+            <% if (session.User.admin) { %>
+              <li><a href="/user">User Administration</a></li>
+              <li><a href="#">Placeholder2</a></li>
             <% } %>
+          <% } %>
           </ul>
           <div class="navbar-right">
             <% if (session.authenticated) { %>
@@ -110,7 +112,7 @@
     -->
 
     <!--TEMPLATES-->
-
+    
     <!--TEMPLATES END-->
 
 

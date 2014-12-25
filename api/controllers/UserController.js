@@ -20,7 +20,7 @@ module.exports = {
 					}
 					return res.redirect('/user/new');
 				}
-				console.log('hello.....');
+				console.log('hello.....' + user.id);
 				//log user in
 				req.session.authenticated = true;
 				req.session.User = user;

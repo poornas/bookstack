@@ -26,6 +26,14 @@ module.exports = {
     encryptedPassword : {
       type: 'string'
     },
+    online : {
+      type: 'boolean',
+      defaultsTo: false
+    },
+    admin: {
+      type: 'boolean',
+      defaultsTo: false
+    },
     // to prevent client from seeing attributes that should be hidden
     toJSON: function() {
       var obj = this.toObject();
@@ -50,5 +58,5 @@ module.exports = {
       values.encryptedPassword = encryptedPassword;
       next();
     });
-  } 
+  }
 };
