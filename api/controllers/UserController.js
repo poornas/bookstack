@@ -20,7 +20,10 @@ module.exports = {
 					}
 					return res.redirect('/user/new');
 				}
-
+				console.log('hello.....');
+				//log user in
+				req.session.authenticated = true;
+				req.session.User = user;
 				res.redirect('/user/show/' + user.id);
 			});
 	},
@@ -71,29 +74,6 @@ module.exports = {
 				if (err) return next(err);
 			});
 			res.redirect('/user');
-		});
-	},
-	'beforeCreate': function (values, next) {
-		if (!values.password || values.password != values.confirmation) {
-			return next(err, 'Password doesnt match password confirmation');
-		}
-
-		require('bcrypt').hash(values.password,10, function passwordEncrypted(err, encryptedPassword) {
-			if (err) return next(err);
-			values.encryptedPassword = encryptedPassword;
-			next();
-		});
-	},
-	'showj': function(values, next) {
-		User.findOne(req.param('id'), function foundOne(err, user) {
-			if (err) {
-				console.log(err);
-				return next(err);
-			}
-			if (!user) return next();
-			res.view({
-				user: user
-			});
 		});
 	}
 };
