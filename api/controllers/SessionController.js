@@ -60,11 +60,9 @@ module.exports = {
 				user.save(function(err, user){
 					if (err) return next(err);
 				});
-				console.log('session/create logging user in....' + user.id);
-				req.session.authenticated = true;
+ 				req.session.authenticated = true;
 				req.session.User = _.clone(user);
-				console.log('session/create logging user in....' + req.session.User.id);
-
+ 
 				if (req.session.User.admin) {
 					res.redirect('/user');
 					return;

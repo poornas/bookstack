@@ -10,8 +10,14 @@ module.exports = {
 		  res.view();
 	} ,
 	'create' : function( req, res, next ) {
-		 console.log("params====== " + req.params.all());
-			User.create(req.params.all(), function userCreated(err, user) {
+			var userObj = {
+				firstname: req.param('firstname'),
+				lastname: req.param('lastname'),
+				email: req.param('email'),
+				password: req.param('password'),
+				confirmation: req.param('confirmation')
+			}
+			User.create(userObj, function userCreated(err, user) {
 				if (err) {
 					console.log(err);
 
@@ -20,11 +26,16 @@ module.exports = {
 					}
 					return res.redirect('/user/new');
 				}
-				console.log('hello.....' + user.id);
 				//log user in
 				req.session.authenticated = true;
-				req.session.User = user;
-				res.redirect('/user/show/' + user.id);
+				// Change status to online
+				user.online = true;
+				req.session.User = _.clone(user);
+
+				user.save(function(err, user) {
+					if (err) return next(err);
+					res.redirect('/user/show/'+user.id);
+				});
 			});
 	},
 	'show' : function (req, res,next) {
@@ -49,8 +60,21 @@ module.exports = {
 		})
 	} ,
 	'update' : function(req, res, next) {
-
-		User.update(req.param('id'), req.params.all(), function userUpdated(err) {
+		if(req.session.User.admin) {
+			var userObj = {
+				firstname: req.param('firstname'),
+				lastname: req.param('lastname'),
+				email: req.param('email'),
+				isadmin: req.param('admin')
+			}
+		} else {
+			var userObj = {
+				firstname: req.param('firstname'),
+				lastname: req.param('lastname'),
+				email: req.param('email'),
+ 			}
+		}
+		User.update(req.param('id'), userObj, function userUpdated(err) {
 			if (err) {
 				return res.redirect('/user/edit' + req.param('id'));
 			}

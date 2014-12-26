@@ -34,7 +34,6 @@ module.exports = {
       type: 'boolean',
       defaultsTo: false
     },
-    // to prevent client from seeing attributes that should be hidden
     toJSON: function() {
       var obj = this.toObject();
       delete obj.password;
@@ -48,7 +47,10 @@ module.exports = {
       return obj;
     }
   },
-  'beforeCreate': function (values, next) {
+    // to prevent client from seeing attributes that should be hidden
+
+
+  beforeCreate: function (values, next) {
     if (!values.password || values.password != values.confirmation) {
       return next(err, 'Password doesnt match password confirmation');
     }
@@ -58,5 +60,12 @@ module.exports = {
       values.encryptedPassword = encryptedPassword;
       next();
     });
+  },
+  beforeValidate: function(values, next) {
+     if (typeof values.isadmin !== 'undefined') {
+       var isAdmin = (values.isadmin === 'on') ? true : false;
+       values.admin = isAdmin;
+     }
+     next();
   }
 };
