@@ -1,7 +1,7 @@
 # BookStack 
-- [ ] Install meteor, meteorite and set up project structure
-- [ ] include bootstrap, and add card layout template
-- [ ] Mock up static data to show books on stack
+- [x] Install meteor, meteorite and set up project structure
+- [x] include bootstrap, and add card layout template
+- [x] Mock up static data to show books on stack
 - [ ] Hook up to Mongo database  and define models
 - [ ] Define user interaction to show links or redirect to amazon
 - [ ] Make user login feature and allow admin create/updt/delete access
