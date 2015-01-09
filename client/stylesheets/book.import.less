@@ -1,51 +1,51 @@
 // Color variables (appears count calculates by raw css)
-@color0: #ffffff; // Appears 6 times
-@color1: #a0c3ff; // Appears 6 times
-@color2: #dd4b39; // Appears 3 times
-@color3: #666666; // Appears 3 times
-@color4: #f4b400; // Appears 3 times
-@color5: #444444; // Appears 3 times
-@color6: #efefef; // Appears 3 times
-@color7: #4285f4; // Appears 3 times
-@color8: #65b045; // Appears 3 times
-@color9: #cfcfcf; // Appears 2 times
-@color10: #d2d2d2; // Appears 2 times
-@color11: #f4f4f4; // Appears 2 times
+@white: #ffffff; // Appears 6 times
+@skyblue: #a0c3ff; // Appears 6 times
+@brick: #dd4b39; // Appears 3 times
+@darkgray: #666666; // Appears 3 times
+@mango: #f4b400; // Appears 3 times
+@charcoal: #444444; // Appears 3 times
+@offwhite2: #efefef; // Appears 3 times
+@blue: #4285f4; // Appears 3 times
+@green: #65b045; // Appears 3 times
+@lightergray: #cfcfcf; // Appears 2 times
+@lightgray: #d2d2d2; // Appears 2 times
+@offwhite: #f4f4f4; // Appears 2 times
 
 
 
 
 .navbar-default {
-	background-color:@color11;
+	background-color:@offwhite;
 	border-width:0;
 	margin-top:50px;
 	z-index:5;
 	.navbar-nav>.active>a {
 		background-color:transparent;
 		border-bottom-width:2px;
-		border:0 solid @color7;
+		border:0 solid @blue;
 		font-weight:800;
 	}
 	.navbar-nav>li {
 		&:hover>a {
 			background-color:transparent;
 			border-bottom-width:2px;
-			border:0 solid @color7;
+			border:0 solid @blue;
 			font-weight:800;
 		}
 	}
 	.dropdown-menu {
-		background-color:@color0;
+		background-color:@white;
 		li>a {
 			padding-left:30px;
 		}
 	}
 }
 .header {
-	background-color:@color0;
+	background-color:@white;
 	border-width:0;
 	.navbar-collapse {
-		background-color:@color0;
+		background-color:@white;
 	}
 }
 .btn,.form-control,.panel,.list-group,.well  {
@@ -59,34 +59,34 @@
 	border-color:transparent;
 }
 .btn-primary,.label-primary,.list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus  {
-	background-color:@color7;
+	background-color:@blue;
 }
 .btn-plus {
-	background-color:@color0;
+	background-color:@white;
 	border-color:#dddddd;
 	border-radius:3px;
 	border-width:1px;
 	box-shadow:1px 1px 0 #999999;
-	color:@color3;
+	color:@darkgray;
 	text-shadow:0 0 1px #bbbbbb;
 }
 .well {
-	border-color:@color10;
+	border-color:@lightgray;
 	border-radius:3px;
-	box-shadow:0 1px 0 @color9;
+	box-shadow:0 1px 0 @lightergray;
 }
 .panel {
-	border-color:@color10;
+	border-color:@lightgray;
 	border-radius:3px;
-	box-shadow:0 1px 0 @color9;
+	box-shadow:0 1px 0 @lightergray;
 	.btn {
 		i {
-			color:@color3;
+			color:@darkgray;
 		}
 	}
 	.panel-heading {
-		background-color:@color0;
-		border-color:@color0;
+		background-color:@white;
+		border-color:@white;
 		color:#262626;
 		font-size:16px;
 		font-weight:700;
@@ -107,46 +107,46 @@
 	}
 }
 .btn-success {
-	background-color:@color8;
+	background-color:@green;
 }
 .label-success {
-	background-color:@color8;
+	background-color:@green;
 }
 .progress-bar-success {
-	background-color:@color8;
+	background-color:@green;
 }
 .btn-info {
-	background-color:@color1;
-	border-color:@color1;
+	background-color:@skyblue;
+	border-color:@skyblue;
 }
 .label-info {
-	background-color:@color1;
-	border-color:@color1;
+	background-color:@skyblue;
+	border-color:@skyblue;
 }
 .progress-bar-info {
-	background-color:@color1;
-	border-color:@color1;
+	background-color:@skyblue;
+	border-color:@skyblue;
 }
 .btn-danger {
-	background-color:@color2;
+	background-color:@brick;
 }
 .label-danger {
-	background-color:@color2;
+	background-color:@brick;
 }
 .progress-bar-danger {
-	background-color:@color2;
+	background-color:@brick;
 }
 .btn-warning {
-	background-color:@color4;
-	color:@color5;
+	background-color:@mango;
+	color:@charcoal;
 }
 .label-warning {
-	background-color:@color4;
-	color:@color5;
+	background-color:@mango;
+	color:@charcoal;
 }
 .progress-bar-warning {
-	background-color:@color4;
-	color:@color5;
+	background-color:@mango;
+	color:@charcoal;
 }
 hr {
 	border-color:#ececec;
@@ -160,7 +160,7 @@ textarea {
 }
 .btn {
 	span {
-		color:@color3;
+		color:@darkgray;
 	}
 }
 .list-group-item {
@@ -173,17 +173,17 @@ textarea {
 }
 h3 {
 	border-bottom-width:1px;
-	border:0 solid @color6;
+	border:0 solid @offwhite2;
 	padding-bottom:10px;
 }
 h4 {
 	border-bottom-width:1px;
-	border:0 solid @color6;
+	border:0 solid @offwhite2;
 	padding-bottom:10px;
 }
 h5 {
 	border-bottom-width:1px;
-	border:0 solid @color6;
+	border:0 solid @offwhite2;
 	padding-bottom:10px;
 }
 .lead {
@@ -195,7 +195,7 @@ h5 {
 	border-width:0;
 }
 .dropdown-menu {
-	background-color:@color11;
+	background-color:@offwhite;
 	border-color:#f0f0f0;
 	border-radius:0;
 	margin-top:-1px;
@@ -209,4 +209,7 @@ h5 {
 	padding-top:120px;
 }
 
- 
+.filter {
+  .btn;
+  .btn-info;
+}
