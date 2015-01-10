@@ -12,3 +12,7 @@ less
 nemo64:bootstrap
 natestrauser:font-awesome
 iron:router
+spin
+accounts-password
+accounts-ui
+mrt:accounts-ui-bootstrap-dropdown
