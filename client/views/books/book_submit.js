@@ -7,7 +7,10 @@ Template.bookSubmit.events({
 			pubDate: $(e.target).find('[name=pubDate]').val()
 		}; 
 		console.log("sub...page");
-		book._id = Books.insert(book);
-		Router.go('bookPage',book);
+		Meteor.call('book', book, function(error,id){
+			if (error) 
+				return alert(error.reason);
+		});
+		Router.go('booksList');
 	}
 });
