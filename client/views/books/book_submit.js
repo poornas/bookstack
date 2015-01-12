@@ -9,7 +9,13 @@ Template.bookSubmit.events({
 		console.log("sub...page");
 		Meteor.call('book', book, function(error,id){
 			if (error) 
-				return alert(error.reason);
+				throwError(error.reason);
+
+			if (error.reason === 302) {
+				Router.go('bookPage',{ message: error.details});
+			} else {
+				Router.go('bookPage',{_id: id});
+			}
 		});
 		Router.go('booksList');
 	}

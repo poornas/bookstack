@@ -1,5 +1,15 @@
-Books = new Meteor.Collection('books');
+ Books = new Meteor.Collection('books');
 
+ Books.allow({
+ 	update: ownsDocument,
+ 	remove: ownsDocument
+ });
+
+ Books.deny({
+ 	update: function(userId, book, fieldNames){
+ 		return (_.without(fieldNames,'url', 'title', 'pubDate').length > 0);
+ 	}
+ });
  Meteor.methods({
  	book: function(bookAttributes) {
  		var user = Meteor.user(),
@@ -16,16 +26,12 @@ Books = new Meteor.Collection('books');
  		}
 
  		var book = _.extend(_.pick(bookAttributes,'url','title','pubDate'), {
- 			title: bookAttributes.title + (Meteor.isServer ? '(server)': '(client)'),
  			userId: user._id,
  			author: user.username,
  			submitted: new Date().getTime()
  		});
 
- 		if (Meteor.isServer){
- 			Meteor._sleepForMs(5000);
- 		}
-
+ 		 
  		var bookId = Books.insert(book);
  		return bookId;
  	}

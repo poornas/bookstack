@@ -1,12 +1,16 @@
  <template name="bookItem">
 <div class="book">
-	<div class="panel panel-default bootcards-media">
+	<div class="book-content panel panel-default bootcards-media">
 	  <div class="panel-heading">
 	    <h3 class="panel-title"><a href="{{url}}">{{title}}</a></h3>
 	  </div>
 	  <div class="panel-body">
 	    Media card description lorem ipsum dolor est compendium
 	    <span>{{domain}}</span>
+	    <p>
+	    	Published Date: {{pubDate}}
+	    	{{#if ownBook}} <a href="{{pathFor 'bookEdit'}}">Edit</a>{{/if}}
+	    </p>
 	    <a href="{{pathFor 'bookPage'}}" class="discuss btn"> Details </a> 
 	  </div>
 	  <img class="img-responsive portfolio-item" src="http://placehold.it/500x300">
