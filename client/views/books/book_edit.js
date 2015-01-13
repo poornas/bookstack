@@ -12,7 +12,7 @@ Template.bookEdit.events({
 
 		Books.update(currentBookId, {$set: bookProperties}, function(error){
 			if (error) {
-				throwError(error.reason);
+				Errors.throw(error.reason);
 			} else {
 				Router.go('bookPage', {_id: currentBookId});
 			}

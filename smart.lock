@@ -3,7 +3,8 @@
   "dependencies": {
     "basePackages": {
       "jquery-masonry": {},
-      "spin": {}
+      "spin": {},
+      "errors": {}
     },
     "packages": {
       "jquery-masonry": {
@@ -15,6 +16,11 @@
         "git": "https://github.com/SachaG/meteor-spin.git",
         "tag": "v2.0.4",
         "commit": "f7b1e12a7caff1283cdb3671a393c182d0ae9862"
+      },
+      "errors": {
+        "git": "https://github.com/tmeasday/meteor-errors.git",
+        "tag": "v0.2.1",
+        "commit": "f2af03510a9e3d9952601f5f091aa76bfbcbf224"
       }
     }
   }
