@@ -2,9 +2,27 @@
 - [x] Install meteor, meteorite and set up project structure
 - [x] include bootstrap, and add card layout template
 - [x] Mock up static data to show books on stack
-- [ ] Hook up to Mongo database  and define models
+- [x] Hook up to Mongo database  and define models
 - [ ] Define user interaction to show links or redirect to amazon
 - [ ] Make user login feature and allow admin create/updt/delete access
+	- [x] create a  user login
+	- [ ] restrict login to just admin 
+	- [ ] Fix bootstrap CSS for UI login to prevent it hiding to the right
+- [ ] Tagging feature implemented 
+	- [ ] Book Create 
+		 - [x] Tags on form 
+		 - [x] Tags inserted to d/b when book created 
+		 - [x] Tag shows on screen when book created 
+	- [ ] Book Edit/Update 
+	    - [ ] When tags get removed/added, insert/delete into tags colln
+	    - [ ] Show tags on the edit form
+	    = [ ] When book gets deleted, remove associated tags from colln
+- [ ] Add pagination logic 
+- [ ] Add a sort feature to sort by pages, title 
+- [ ] Add a search feature to search by tag or title 
+- [ ] Add a filter feature to filter by tag, title, rating
+- [ ] Add a rating feature to allow users to rate a book
+- [ ] By default, let the most popular best selling books come to top 
 - [ ] Look up Amazon API to download books.json to upload to Mongo
 
 - [ ] Write a Mongo update task to upload data to database
