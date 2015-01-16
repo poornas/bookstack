@@ -12,6 +12,11 @@
 	    	{{#if ownBook}} <a href="{{pathFor 'bookEdit'}}">Edit</a>{{/if}}
 	    </p>
 	    <a href="{{pathFor 'bookPage'}}" class="discuss btn"> Details </a> 
+	    <hr />
+	    	{{#each tags}}
+	    		{{> tag}}
+	    	{{/each}}
+	 
 	  </div>
 	  <img class="img-responsive portfolio-item" src="http://placehold.it/500x300">
 	  
@@ -35,6 +40,7 @@
 	          Email
 	        </button>
 	      </div>
+	      
 	    </div>
 	  </div>
 	</div>

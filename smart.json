@@ -2,6 +2,7 @@
   "packages": {
     "jquery-masonry": {},
     "spin": {},
-    "errors": {}
+    "errors": {},
+    "tags": {}
   }
 }

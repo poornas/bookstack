@@ -4,7 +4,8 @@
     "basePackages": {
       "jquery-masonry": {},
       "spin": {},
-      "errors": {}
+      "errors": {},
+      "tags": {}
     },
     "packages": {
       "jquery-masonry": {
@@ -21,6 +22,11 @@
         "git": "https://github.com/tmeasday/meteor-errors.git",
         "tag": "v0.2.1",
         "commit": "f2af03510a9e3d9952601f5f091aa76bfbcbf224"
+      },
+      "tags": {
+        "git": "https://github.com/apendua/meteor-tags.git",
+        "tag": "v0.1.2.2",
+        "commit": "613382880617178276a7fbbcfe07812407d48e6b"
       }
     }
   }
