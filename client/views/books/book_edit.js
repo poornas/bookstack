@@ -30,7 +30,7 @@ Template.bookEdit.events({
 
 		if (confirm("Delete this book?")) {
 			var currentBookId = this._id;
-			Books.remove(currentBookId);
+			Meteor.call('removeBook',currentBookId);
 			Router.go('booksList');
 		}
 	}

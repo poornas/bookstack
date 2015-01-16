@@ -65,7 +65,23 @@
    	  }
       return;
  	 }
- 	}
+ 	}, 
+  removeBook: function(bookId){
+    var book = Books.findOne(bookId);
+    if (ownsDocument) {
+      var oldTags = book.tags.split(",");
+      Books.remove(bookId, function(error){
+        if (error) { 
+          throw new Meteor.Error(302,"You don't have permission to delete this comment." );
+        }
+        for (tagindex in oldTags) {
+          deleteTag(oldTags[tagindex], bookId);          
+        }
+      
+      });
+      return;
+    }
+  }
  });
 
  insertTag = function(tagName, bookId) {
