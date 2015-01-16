@@ -7,16 +7,23 @@ Template.bookEdit.events({
 		var bookProperties = {
 			url: $(e.target).find('[name=url]').val(),
 			title: $(e.target).find('[name=title]').val(),
-			pubDate: $(e.target).find('[name=pubDate]').val()
+			pubDate: $(e.target).find('[name=pubDate]').val(),
+			tags: $(e.target).find('[name=tags]').val()
 		}
-
-		Books.update(currentBookId, {$set: bookProperties}, function(error){
-			if (error) {
-				Errors.throw(error.reason);
+		Meteor.call('updateBook', currentBookId, bookProperties, function(error,id) {
+			if (error && error.reason === 302) {
+				Router.go('bookPage',{ message: error.details});
 			} else {
-				Router.go('bookPage', {_id: currentBookId});
+				Router.go('bookPage',{_id: currentBookId});
 			}
-		});
+		});		
+		// Books.update(currentBookId, {$set: bookProperties}, function(error){
+		// 	if (error) {
+		// 		Errors.throw(error.reason);
+		// 	} else {
+		// 		Router.go('bookPage', {_id: currentBookId});
+		// 	}
+		// });
 	},
 	'click .delete': function(e) {
 		e.preventDefault();

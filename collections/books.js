@@ -6,8 +6,8 @@
  });
 
  Books.deny({
- 	update: function(userId, book, fieldNames){
- 		return (_.without(fieldNames,'url', 'title', 'pubDate').length > 0);
+ 	update: function(userId, book, fieldNames,tags){
+ 		return (_.without(fieldNames,'url', 'title', 'pubDate','tags').length > 0);
  	}
  });
  Meteor.methods({
@@ -25,10 +25,11 @@
  			throw new Meteor.Error(302, 'This link has already been added',bookWithSameLink._id);
  		}
  		 
- 		var book = _.extend(_.pick(bookAttributes,'url','title','pubDate'), {
+ 		var book = _.extend(_.pick(bookAttributes,'url','title','pubDate','tags'), {
  			userId: user._id,
  			author: user.username,
- 			submitted: new Date().getTime()
+ 			submitted: new Date().getTime(),
+ 			tags: bookAttributes.tags
  		});
 
  		console.log("bookAttributes" + bookAttributes.tags.split(","));
@@ -40,6 +41,30 @@
  			insertTag(tags[tagindex],bookId);
  		}
  		return bookId;
+ 	},
+ 	updateBook: function(bookId, bookAttributes) {
+  	var book = Books.findOne(bookId);
+    if(ownsDocument){ 
+      var oldTags = book.tags.split(",");
+    
+      var newTags = bookAttributes.tags.split(",");
+      var deletedTags = _.difference(oldTags,newTags);
+      var addedTags = _.difference(newTags,oldTags);
+      Books.update(book._id, {$set: bookAttributes}, function(error){
+
+  		if (error) { 
+        console.log("errorrr");
+  			throw new Meteor.Error(302,"You don't have permission to delete this comment." );
+      }
+  	  });
+      for (tagindex in addedTags) { 
+   			insertTag(addedTags[tagindex],bookId);
+   	  }
+   	  for (tagindex in deletedTags) {
+   	  	 deleteTag(deletedTags[tagindex], bookId);
+   	  }
+      return;
+ 	 }
  	}
  });
 
@@ -53,4 +78,11 @@
 		});
  	}
  	
+ }
+
+ deleteTag = function(tagName, bookId) {
+ 	var target = Tags.findOne({name: tagName, bookId: bookId});
+ 	if (target) {
+ 		Tags.remove(target._id);
+ 	}
  }
