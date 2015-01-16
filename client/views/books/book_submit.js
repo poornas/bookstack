@@ -4,9 +4,10 @@ Template.bookSubmit.events({
 		var book = {
 			url: $(e.target).find('[name=url]').val(),
 			title: $(e.target).find('[name=title]').val(),
-			pubDate: $(e.target).find('[name=pubDate]').val()
+			pubDate: $(e.target).find('[name=pubDate]').val(),
+			tags: $(e.target).find('[name=tags]').val()
 		}; 
-		console.log("sub...page");
+		console.log("sub...page" + book.tags);
 		Meteor.call('book', book, function(error,id){
 			if (error) 
 				Errors.throw(error.reason);

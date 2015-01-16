@@ -24,15 +24,33 @@
  		if (bookAttributes.url && bookWithSameLink) {
  			throw new Meteor.Error(302, 'This link has already been added',bookWithSameLink._id);
  		}
-
+ 		 
  		var book = _.extend(_.pick(bookAttributes,'url','title','pubDate'), {
  			userId: user._id,
  			author: user.username,
  			submitted: new Date().getTime()
  		});
 
- 		 
- 		var bookId = Books.insert(book);
+ 		console.log("bookAttributes" + bookAttributes.tags.split(","));
+ 	 	console.log("bookAttributes" + bookAttributes.tags.split(",")[0]);
+	 
+ 		var bookId = Books.insert(book); 
+ 		var tags  = bookAttributes.tags.split(",");
+ 		for (tagindex in tags) {
+ 			insertTag(tags[tagindex],bookId);
+ 		}
  		return bookId;
  	}
  });
+
+ insertTag = function(tagName, bookId) {
+ 	var now = new Date().getTime(); 
+ 	if (!Tags.findOne({name: tagName})) {
+ 		Tags.insert({
+			bookId: bookId,
+			submitted: now,	
+			name: tagName
+		});
+ 	}
+ 	
+ }
