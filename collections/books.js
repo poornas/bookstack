@@ -1,15 +1,17 @@
  Books = new Meteor.Collection('books');
-
  Books.allow({
  	update: ownsDocument,
  	remove: ownsDocument
  });
+ Books.initEasySearch(['title','tags']);
 
  Books.deny({
  	update: function(userId, book, fieldNames,tags){
  		return (_.without(fieldNames,'url', 'title', 'pubDate','tags').length > 0);
  	}
  });
+
+ 
  Meteor.methods({
  	book: function(bookAttributes) {
  		var user = Meteor.user(),

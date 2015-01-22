@@ -1,0 +1,16 @@
+<template name="tagPage">
+ <div class="books">
+	<div class="row">
+		{{#each books}} 
+			{{> bookItem}}
+		{{/each}}
+		
+	</div>
+	{{#if nextPath}} 
+		<a class="load-more" href="{{nextPath}}">Load More</a>
+		{{#unless ready}}
+        	{{> spinner}}
+     	 {{/unless}}
+	{{/if}}
+</div> 
+</template>

@@ -5,3 +5,28 @@
 {{/each}}
 </div>
 </div> </template>
+
+<template name="searchResults">
+<div class="row">
+
+	{{#esEach index="books"}}
+        {{> bookItem}}
+    {{/esEach}}
+ </div>
+</template>
+
+<template name="booksListWrapper">
+{{#ifEsInputIsEmpty index="books"}}
+	{{> booksList}} 
+{{else}}
+	{{#ifEsHasNoResults index="books" }}
+		<div class="alert alert-danger"> No results found.</div>
+		{{> booksList}}
+	{{else}}
+		{{> searchResults}}
+	{{/ifEsHasNoResults}}
+
+{{/ifEsInputIsEmpty}}
+
+</template>
+
