@@ -8,7 +8,12 @@ Template.bookEdit.events({
 			url: $(e.target).find('[name=url]').val(),
 			title: $(e.target).find('[name=title]').val(),
 			pubDate: $(e.target).find('[name=pubDate]').val(),
-			tags: $(e.target).find('[name=tags]').val()
+			tags: $(e.target).find('[name=tags]').val(),
+			reviews: $(e.target).find('[name=reviews]').val(),
+			stars: $(e.target).find('[name=stars]').val(),
+			price: $(e.target).find('[name=price]').val(),
+			url: $(e.target).find('[name=url]').val(),
+			pages: $(e.target).find('[name=pages]').val()
 		}
 		Meteor.call('updateBook', currentBookId, bookProperties, function(error,id) {
 			if (error && error.reason === 302) {
@@ -31,7 +36,7 @@ Template.bookEdit.events({
 		if (confirm("Delete this book?")) {
 			var currentBookId = this._id;
 			Meteor.call('removeBook',currentBookId);
-			Router.go('booksList');
+			Router.go('booksListWrapper');
 		}
 	}
 });
