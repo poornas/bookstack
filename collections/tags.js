@@ -1,5 +1,9 @@
 Tags =  new Meteor.Collection("tags");
-
+EasySearch.createSearchIndex('tags', {
+    'field' : 'name',  // required, searchable field(s)
+    'collection' : Tags,          // required, Mongo Collection
+    'limit' : 20                // not required, default is 10
+ });
 if (Books.find().count() === 0) {
 	var now = new Date().getTime();
 

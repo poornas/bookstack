@@ -5,6 +5,17 @@
 	}
 });
 
+Template.searchResultsByTags.helpers({
+	booksForTag: function() {
+		//var matchingBookIds = Tags.find({'name': tagName},
+		// 	       {'bookId':1,'_id':0}).map(function(u){return u.bookId;}).toArray();
+		//return Books.find( { _id : { $in : matchingBookIds} });
+		console.log(this);
+		console.log(this.bookId);
+		console.log(this.title);
+		return Books.find({_id: this.bookId});
+	}
+})
 Template.bookItem.helpers({
 	domain: function() {
 		a = document.createElement('a');

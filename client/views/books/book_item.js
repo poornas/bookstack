@@ -9,6 +9,6 @@ Template.bookItem.helpers({
 	},
 	tags: function() {
 		return Tags.find({bookId: this._id});
-	},
+	}
 });
 

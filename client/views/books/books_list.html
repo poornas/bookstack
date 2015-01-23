@@ -6,7 +6,7 @@
 </div>
 </div> </template>
 
-<template name="searchResults">
+<template name="searchResultsByBooks">
 <div class="row">
 
 	{{#esEach index="books"}}
@@ -15,7 +15,20 @@
  </div>
 </template>
 
-<template name="booksListWrapper">
+<template name="searchResultsByTags">
+<div class="row">
+{{#esEach index="tags" }}
+	{{#each booksForTag}}
+    	{{> bookItem}}
+    {{/each}}
+{{/esEach}}
+ </div>
+</template>
+<template name="searchResultsByTagsAndBooks"> 
+    {{>searchResultsByBooks}}
+    {{> searchResultsByTags}}
+</template>
+<template name="booksListWrapperMulti">
 {{#ifEsInputIsEmpty index="books"}}
 	{{> booksList}} 
 {{else}}
@@ -30,3 +43,34 @@
 
 </template>
 
+<template name="booksListWrapper">
+
+    {{#ifEsIsSearching index=indexes logic="AND" }}
+        <div class="alert alert-info"> Searching...</div>
+    {{else}}
+        {{#ifEsInputIsEmpty index=indexes }}
+            Start searching!
+            {{>booksList}}
+        {{else}}
+            {{#ifEsHasNoResults index="books" }}
+                {{#ifEsHasNoResults index="tags"}}
+                     <div class="alert alert-info">No results for books or tags</div>
+                     {{>booksList}}
+                {{else}}
+                    <div class="alert alert-success">has tags but no books</div>
+                    {{>searchResultsByTags}}
+                {{/ifEsHasNoResults}}
+            {{else}}
+                {{#ifEsHasNoResults index="tags" }}
+                     <div class="alert alert-success">HAS BOOKs no tags</div>
+                     {{>searchResultsByBooks}}
+                {{else}}
+                   <div class="alert alert-success"> has books and tags </div>
+                   {{> searchResultsByTagsAndBooks}}
+                {{/ifEsHasNoResults}}
+
+            {{/ifEsHasNoResults}}
+        
+        {{/ifEsInputIsEmpty}}
+    {{/ifEsIsSearching}}
+</template>

@@ -3,8 +3,13 @@
  	update: ownsDocument,
  	remove: ownsDocument
  });
- Books.initEasySearch(['title','tags']);
+// Books.initEasySearch(['title','tags']);
 
+ EasySearch.createSearchIndex('books', {
+    'field' : 'title',  // required, searchable field(s)
+    'collection' : Books,          // required, Mongo Collection
+    'limit' : 20                  // not required, default is 10
+ });
  Books.deny({
  	update: function(userId, book, fieldNames,tags){
  		return (_.without(fieldNames,'url', 'title', 'pubDate','tags').length > 0);
@@ -26,7 +31,6 @@
  		if (bookAttributes.url && bookWithSameLink) {
  			throw new Meteor.Error(302, 'This link has already been added',bookWithSameLink._id);
  		}
- 		 
  		var book = _.extend(_.pick(bookAttributes,'url','title','pubDate','tags'), {
  			userId: user._id,
  			author: user.username,
