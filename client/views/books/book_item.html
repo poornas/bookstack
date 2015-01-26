@@ -12,7 +12,7 @@
 	    </p>
 	    <p>
 	    	{{pages}} Pages, {{pubDate}}
-	    	{{#if ownBook}} <a href="{{pathFor 'bookEdit'}}">Edit</a>{{/if}}
+	    	{{#if ownBook}} <a href="{{pathFor 'bookEdit' _id=this._id.toHexString}}">Edit</a>{{/if}}
 	    </p>
 	    <a href="{{pathFor 'bookPage'}}" class="discuss btn"> Details </a> 
 	    <hr />
@@ -38,8 +38,8 @@
 	      </div>
 	      <div class="btn-group">
 	        <button class="btn btn-default">
-	          <i class="fa fa-envelope"></i>
-	          Email
+	          <i class="fa fa-shopping-cart"></i>
+	          Buy {{price}}
 	        </button>
 	      </div>
 	      
