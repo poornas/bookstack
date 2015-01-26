@@ -9,6 +9,9 @@ Template.bookItem.helpers({
 	},
 	tags: function() {
 		return Tags.find({bookId: this._id});
+	},
+	imageurl: function() {
+		return this.image_url ? this.image_url : "http://placehold.it/400x300";
 	}
 });
 

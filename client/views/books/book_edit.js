@@ -12,7 +12,9 @@ Template.bookEdit.events({
 			reviews: $(e.target).find('[name=reviews]').val(),
 			stars: $(e.target).find('[name=stars]').val(),
 			price: $(e.target).find('[name=price]').val(),
-			url: $(e.target).find('[name=url]').val(),
+			download_url: $(e.target).find('[name=download_url]').val(),
+			image_url: $(e.target).find('[name=image_url]').val(),
+
 			pages: $(e.target).find('[name=pages]').val()
 		}
 		Meteor.call('updateBook', currentBookId, bookProperties, function(error,id) {
